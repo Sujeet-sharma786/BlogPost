@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  console.log(BASE_URL)
+  // console.log(BASE_URL)
   const location = useLocation();
   const naviagte = useNavigate();
   const dispath = useDispatch();
@@ -30,8 +30,8 @@ const Login = () => {
     setIsSignup(isSignupButtonPressed);
   }, [isSignupButtonPressed]);
   const sendRequest = async (type = "login") => {
-    console.log("inside send req");
-    console.log(`${BASE_URL}/api/users/${type}`);
+    // console.log("inside send req");
+    // console.log(`${BASE_URL}/api/users/${type}`);
     const res = await axios
       .post(`${BASE_URL}/api/users/${type}`, {
         name: inputs.name,
@@ -41,8 +41,8 @@ const Login = () => {
       .catch((err) => console.log(err));
 
     const data = await res.data;
-    console.log("return");
-    console.log(data);
+    // console.log("return");
+    // console.log(data);
     return data;
   };
 
