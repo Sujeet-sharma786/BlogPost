@@ -4,9 +4,11 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useNavigate, useLocation } from "react-router-dom";
-import config from "../config";
+// import config from "../config";
 
 const Login = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  console.log(BASE_URL)
   const location = useLocation();
   const naviagte = useNavigate();
   const dispath = useDispatch();
@@ -29,9 +31,9 @@ const Login = () => {
   }, [isSignupButtonPressed]);
   const sendRequest = async (type = "login") => {
     console.log("inside send req");
-    console.log(`${config.BASE_URL}/api/users/${type}`);
+    console.log(`${BASE_URL}/api/users/${type}`);
     const res = await axios
-      .post(`${config.BASE_URL}/api/users/${type}`, {
+      .post(`${BASE_URL}/api/users/${type}`, {
         name: inputs.name,
         email: inputs.email,
         password: inputs.password,

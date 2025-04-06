@@ -14,8 +14,9 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useStyles } from "./utils";
-import config from "../config";
+// import config from "../config";
 const Blogs = ({ title, desc, img, user, isUser, id }) => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const classes = useStyles();
   const navigate = useNavigate();
   const handleEdit = () => {
@@ -23,7 +24,7 @@ const Blogs = ({ title, desc, img, user, isUser, id }) => {
   };
   const deleteRequest = async () => {
     const res = await axios
-      .delete(`${config.BASE_URL}/api/blogs/${id}`)
+      .delete(`${BASE_URL}/api/blogs/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;

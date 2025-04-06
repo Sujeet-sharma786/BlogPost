@@ -1,7 +1,7 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import config from "../config";
+// import config from "../config";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "./utils";
@@ -13,6 +13,7 @@ const AddBlogs = () => {
   const [title,setTitle] = useState("");
   const [desc,setDesc] = useState("");
   const [image,setImage] = useState("");
+  const BASE_URL = process.env.REACT_APP_BASE_URL
   // const [inputs, setInputs] = useState({
   //   title: "",
   //   description: "",
@@ -34,7 +35,7 @@ const AddBlogs = () => {
     console.log(formdata.image)
     console.log(title,desc,image)
     const res = await axios
-      .post(`${config.BASE_URL}/api/blogs/add`, formdata)
+      .post(`${BASE_URL}/api/blogs/add`, formdata)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
-import config from "../config";
+// import config from "../config";
 
 const Blogs = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [blogs, setBlogs] = useState();
   const sendRequest = async () => {
     const res = await axios
-      .get(`${config.BASE_URL}/api/blogs`)
+      .get(`${BASE_URL}/api/blogs`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
@@ -26,7 +27,7 @@ const Blogs = () => {
             isUser={localStorage.getItem("userId") === blog.user._id}
             title={blog.title}
             desc={blog.desc}
-            img={`http://localhost:5001/${blog?.imgUrl}`}
+            img={`${BASE_URL}/${blog?.imgUrl}`}
     
             
             user={blog.user.name}

@@ -3,11 +3,12 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import config from "../config";
+// import config from "../config";
 
 const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const BlogDetail = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [blog, setBlog] = useState();
   const id = useParams().id;
@@ -21,7 +22,7 @@ const BlogDetail = () => {
   };
   const fetchDetails = async () => {
     const res = await axios
-      .get(`${config.BASE_URL}/api/blogs/${id}`)
+      .get(`${BASE_URL}/api/blogs/${id}`)
       .catch((err) => console.log(err));
     const data = await res.data;
     return data;
@@ -37,7 +38,7 @@ const BlogDetail = () => {
   }, [id]);
   const sendRequest = async () => {
     const res = await axios
-      .put(`${config.BASE_URL}/api/blogs/update/${id}`, {
+      .put(`${BASE_URL}/api/blogs/update/${id}`, {
         title: inputs.title,
         description: inputs.description,
       })
